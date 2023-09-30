@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       const baseUrl = "http://localhost:8080/search";
+      function loadTowns() {
+        //zahtjev=zaglavlje+tijelo(header, body)
+        const requestObject = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Basic aXZpY2E6aXZpY2ExMjM=",
+          },
+        };
+        //adresa url
+        const townUrl = `${baseUrl}/search`;
+
+        //uputiti zahtjev da bi dobili
+        const promise = fetch(townUrl, requestObject); //Promise<Response>
+
+        promise
+          .then((response) => {
+            console.log('fdjsajlčdfsjlfsdlkjfsdalkjč')
+            response.json()
+        }) //uspjeha
+          .catch((error) => console.log(error))
+          .then(obradiDobijeneRezultate)
+          .catch((error) => console.log(error)); //neuspjeh
+      }
+
+      function obradiDobijeneRezultate(user){
+        console.log(user)
+        const townDiv = document.getElementById('townDiv')
+        for(let user of user){
+            console.log('testtestst')
+            const liElement = document.createElement('li');
+            const liContent = document.createTextNode(user.name);
+            liElement.appendChild(liContent);
+            townDiv.appendChild(liElement);
+        }
+      }
+
+      loadTowns();
+    </script>
+</body>
+</html>

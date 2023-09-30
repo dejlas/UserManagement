@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users</title>
+  </head>
+  <body>
+    <div id="userDiv"></div>
+
+    <script>
+      //let, const
+      const baseUrl = "http://localhost:8080/users";
+      function loadUSers() {
+        //zahtjev=zaglavlje+tijelo(header, body)
+        const requestObject = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Basic aXZpY2E6aXZpY2ExMjM=",
+          },
+        };
+        
+
+        //uputiti zahtjev da bi dobili
+        const promise = fetch("http://localhost:8080/users", requestObject); //Promise<Response>
+
+        promise
+          .then((response) => response.json()) //uspjeha
+          .catch((error) => console.log(error))
+          .then(obradiDobijeneRezultate)
+          .catch((error) => console.log(error)); //neuspjeh
+      }
+
+      function obradiDobijeneRezultate(users){
+        const userDiv = document.getElementById('userDiv')
+        for(let town of towns){
+            const liElement = document.createElement('li');
+            const liContent = document.createTextNode(user.firstName);
+            liElement.appendChild(liContent);
+            townDiv.appendChild(liElement);
+        }
+      }
+
+      loadUSers();
+    </script>
+  </body>
+</html>

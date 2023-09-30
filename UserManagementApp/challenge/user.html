@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+  
+        th,
+        td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        th {
+          background-color: #f2f2f2;
+        }
+      </style>
+</head>
+<body>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+
+const user = [
+  {id:"5f0f36345628b2bb08ddcf83", firstName: "Marina", lastName: "Orozco", email: "marina@kahvanainc.com" },
+  {id:"5f0f3634a3357afc09a0333d", firstName: "Kip", lastName: "Winters", email: "kip@kahvanainc.com" },
+  {id:"5f0f363455f1ad4632d8e4d3", firstName: "Lorie", lastName: "Avery", email: "lorie@kahvanainc.com" },
+  {id:"5f0f36343311956754254404", firstName: "Jasmin", lastName: "Winters", email: "jasmin@kahvanainc.com" },
+  {id:"5f0f36344285b38ab4e9187f", firstName: "Emma", lastName: "Hess", email: "emma@kahvanainc.com" },
+  {id:"5f0f3634abaa863ab18ac741", firstName: "Elvia", lastName: "Acosta", email: "elvia@kahvanainc.com" },
+  {id:"5f0f36342c501774010d92fa", firstName: "Liliana", lastName: "Sweeney", email: "liliana@kahvanainc.com" },
+  {id:"5f0f3634987f2ae9d3c7c48a", firstName: "Florencio", lastName: "Acosta", email: "florencio@kahvanainc.com" },
+  {id:"5f0f3634e8dfd9bbde33c703", firstName: "Delores", lastName: "Sanchez", email: "delores@kahvanainc.com" },
+
+];
+
+        const headerBodyParams= {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(user)
+        };
+        
+        
+        fetch("http://localhost:8080/addUsers", headerBodyParams)
+        .then (response => response.json())
+        .then (users=>{
+            const tableBody = document.querySelector("#data-table tbody");
+            users.forEach(user=>{
+                const row = document.createElement('tr');
+
+                const idCell = document.createElement('td');
+                idCell.textContent = user.id;
+                row.appendChild(idCell);
+
+                const firstNameCell = document.createElement('td');
+                firstNameCell.textContent = user.firstName;
+                row.appendChild(firstNameCell);
+
+                const lastNameCell = document.createElement('td');
+                lastNameCell.textContent = user.lastName;
+                row.appendChild(lastNameCell);
+
+                const emailCell = document.createElement('td');
+                emailCell.textContent = user.id;
+                row.appendChild(emailCell);
+
+                tableBody.appendChild(row)
+            
+            })
+        })
+
+        const fetchObjectParams= {
+            method: 'GET',
+            headers: {"Content-Type": "application/json"}
+        };
+        
+        fetch("http://localhost:8080/users", fetchObjectParams)
+        .then (response => response.json())
+        .then (users=>{
+            const tableBody = document.querySelector("#data-table tbody");
+            users.forEach(user=>{
+                const row = document.createElement('tr');
+
+                const idCell = document.createElement('td');
+                idCell.textContent = user.id;
+                row.appendChild(idCell);
+
+                const firstNameCell = document.createElement('td');
+                firstNameCell.textContent = user.firstName;
+                row.appendChild(firstNameCell);
+
+                const lastNameCell = document.createElement('td');
+                lastNameCell.textContent = user.lastName;
+                row.appendChild(lastNameCell);
+
+                const emailCell = document.createElement('td');
+                emailCell.textContent = user.id;
+                row.appendChild(emailCell);
+
+                tableBody.appendChild(row)
+            
+            })
+        })
+        const userForUpdate ={id:"5f0f36343311956754254404", firstName: "Jasmin", lastName: "Winters", email: "jasmin@kahvanainc.com" }
+        const updateParams= {
+            method: 'PUT',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(userForUpdate)
+        };
+        
+        fetch("http://localhost:8080/updateUser", updateParams)
+        .then (response => response.json())
+        .then (user=>{
+            const tableBody = document.querySelector("#data-table tbody");
+           
+                const row = document.createElement('tr');
+
+                const idCell = document.createElement('td');
+                idCell.textContent = user.id;
+                row.appendChild(idCell);
+
+                const firstNameCell = document.createElement('td');
+                firstNameCell.textContent = user.firstName;
+                row.appendChild(firstNameCell);
+
+                const lastNameCell = document.createElement('td');
+                lastNameCell.textContent = user.lastName;
+                row.appendChild(lastNameCell);
+
+                const emailCell = document.createElement('td');
+                emailCell.textContent = user.id;
+                row.appendChild(emailCell);
+
+                tableBody.appendChild(row)
+
+            })
+
+            const findUserParams= {
+            method: 'GET',
+            headers: {"Content-Type": "application/json"}
+        };
+        
+        fetch("http://localhost:8080/search?id=1", findUserParams)
+        .then (response => response.json())
+        .then (user=>{
+            const tableBody = document.querySelector("#data-table tbody");
+           
+                const row = document.createElement('tr');
+
+                const idCell = document.createElement('td');
+                idCell.textContent = user.id;
+                row.appendChild(idCell);
+
+                const firstNameCell = document.createElement('td');
+                firstNameCell.textContent = user.firstName;
+                row.appendChild(firstNameCell);
+
+                const lastNameCell = document.createElement('td');
+                lastNameCell.textContent = user.lastName;
+                row.appendChild(lastNameCell);
+
+                const emailCell = document.createElement('td');
+                emailCell.textContent = user.id;
+                row.appendChild(emailCell);
+
+                tableBody.appendChild(row)
+
+            })
+              
+
+    </script>
+    
+</body>
+</html>

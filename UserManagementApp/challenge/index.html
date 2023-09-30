@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge</title>
+</head>
+<body>
+    <div id = "demo"></div>
+
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+            console.log (this.responseText);
+            document.getElementById('demo').innerHTML= this.responseText;
+        
+        };
+        xhttp.open(
+            "GET", "http://localhost:8080/search"
+        );
+        xhttp.send();
+    </script>
+</body>
+</html>
